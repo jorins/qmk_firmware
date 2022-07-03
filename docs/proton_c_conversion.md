@@ -20,7 +20,7 @@ This exposes the `CONVERT_TO_PROTON_C` flag that you can use in your code with `
 #endif
 ```
 
-If you get errors about `PORTB/DDRB`, etc not being defined, so you'll need to convert the keyboard's code to use the [GPIO Controls](internals_gpio_control.md) that will work for both ARM and AVR. This shouldn't affect the AVR builds at all.
+If you get errors about `PORTB/DDRB`, etc not being defined, so you'll need to convert the keyboard's code to use the [GPIO Controls](gpio_control.md) that will work for both ARM and AVR. This shouldn't affect the AVR builds at all.
 
 The Proton C only has one on-board LED (C13), and by default, the TXLED (D5) is mapped to it. If you want the RXLED (B0) mapped to it instead, add this like to your `config.h`:
 
@@ -36,7 +36,7 @@ These are defaults based on what has been implemented for ARM boards.
 | [RGB Lighting](feature_rgblight.md) | Disabled                                                                                                         |
 | [Backlight](feature_backlight.md)   | Forces [task driven PWM](feature_backlight.md#software-pwm-driver) until ARM can provide automatic configuration |
 | USB Host (e.g. USB-USB converter)   | Not supported (USB host code is AVR specific and is not currently supported on ARM)                              |
-| [Split keyboards](feature_split_keyboard.md) | Not supported yet                                                                                       |
+| [Split keyboards](feature_split_keyboard.md) | Partial - heavily dependent on enabled features                                                         |
 
 ## Manual Conversion
 
@@ -44,6 +44,7 @@ To use the Proton C natively, without having to specify `CTPC=yes`, you need to 
 
 ```
 MCU = STM32F303
+BOARD = QMK_PROTON_C
 ```
 
 Remove these variables if they exist:
